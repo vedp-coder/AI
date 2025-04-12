@@ -1,1 +1,10 @@
+email = "Your account has been compromised! You must take action immediately! Otherwise you might face severe consequences!"
 
+#tokenize this email
+token = email.split()
+dangerous = ["compromised", "immediately", "consequences"]
+
+for word in email:
+  if token == dangerous:
+    print(f"Security word: {word}")
+  
