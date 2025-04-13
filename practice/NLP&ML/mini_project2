@@ -1,1 +1,229 @@
+import pandas as pd
 
+data = {
+    "emails": [
+        "Your account has been locked due to suspicious activity.",
+        "Let’s catch up over coffee this weekend!",
+        "Click here to verify your account and avoid suspension.",
+        "Don't forget to submit your assignment by 11:59 PM.",
+        "You have won a free cruise. Act now to claim it!",
+        "Weekly sync is moved to Wednesday at 10 AM.",
+        "Urgent: Update your banking information immediately.",
+        "Happy Anniversary! Let’s celebrate soon.",
+        "Confirm your password to avoid losing access.",
+        "See you at the book club on Friday?",
+        
+        "Reactivate your account by clicking this link.",
+        "Great job on the group presentation!",
+        "Claim your Amazon gift card today only!",
+        "Class canceled tomorrow – enjoy your day off!",
+        "Reset your Apple ID password immediately.",
+        "Lunch at the new ramen place tomorrow?",
+        "Your tax refund is waiting. Submit your info now.",
+        "Reminder: your dentist appointment is next Monday.",
+        "Unusual login attempt detected. Secure your account.",
+        "Movie night at my place on Saturday?",
+        
+        "We’ve frozen your funds. Unlock them now.",
+        "Thank you for your application. We’ll be in touch!",
+        "Action required: update your email preferences.",
+        "Hey, here are the notes from today’s lecture.",
+        "Your PayPal has been limited. Fix it now.",
+        "Game night at Sarah’s house tonight!",
+        "Legal action will be taken if you don’t respond.",
+        "Can you send me the homework answers?",
+        "Security alert: Click now to avoid compromise.",
+        "Yoga class at 6pm – don’t forget your mat!",
+        
+        "Access restricted: verify credentials now.",
+        "Congrats on your scholarship offer!",
+        "Final warning: your account is expiring.",
+        "Want to go hiking on Sunday?",
+        "Click here to claim your $500 bonus.",
+        "Loved your speech today – super inspiring!",
+        "Your Netflix payment failed. Fix it today.",
+        "Dinner tonight? I made a reservation.",
+        "Mailbox full: delete messages or upgrade now.",
+        "Let’s meet early to prep for the interview.",
+        
+        "Update your details or face account termination.",
+        "I made brownies. Want some?",
+        "Earn thousands working from home. Sign up here.",
+        "Attached is the final draft of the essay.",
+        "Confirm your identity now or lose access.",
+        "Let’s carpool to the hackathon?",
+        "Failure to act will result in account loss.",
+        "Meeting pushed back to 3pm. Sorry for the change!",
+        "Congratulations! You’ve been selected for a reward.",
+        "Want to study together at the library tonight?",
+        
+        "Password expired. Reset it now to keep using your account.",
+        "Don’t forget to water my plants while I’m gone!",
+        "Get rich quick with this once-in-a-lifetime offer.",
+        "Looking forward to our group dinner!",
+        "Your Dropbox is full. Click to upgrade.",
+        "Thanks again for your help on the project!",
+        "We detected fraud in your account. Login now!",
+        "Let’s review each other’s essays this weekend.",
+        "Click here to receive your new credit card.",
+        "I'll bring snacks for tomorrow’s meeting.",
+        
+        "You’ve been hacked. Reset your credentials now.",
+        "How was your vacation? Can’t wait to hear!",
+        "Time-sensitive: your account is at risk.",
+        "Don’t forget our tennis match tomorrow!",
+        "Click now to avoid permanent account deletion.",
+        "See you at the bake sale fundraiser?",
+        "Alert: Invoice payment failed. Fix it now.",
+        "Thanks for forwarding the slides!",
+        "Important document attached. Review immediately.",
+        "Let’s do brunch on Sunday?",
+        
+        "Download your e-statement now or lose access.",
+        "I left my charger in your room – mind dropping it off?",
+        "Immediate response required for billing issue.",
+        "Want to split the Uber tonight?",
+        "Reset your credentials or get locked out.",
+        "Wanna try that new boba place later?",
+        "Your bonus is ready. Confirm your identity.",
+        "Reminder: pick up your dry cleaning!",
+        "Tax notice: file immediately to avoid penalties.",
+        "Bring your laptop to the lab session, please!",
+        
+        "Verify your identity to prevent permanent lockout.",
+        "Thanks for the birthday wishes!",
+        "Your account was accessed from an unrecognized location.",
+        "Let’s meet at the library around 4?",
+        "Suspicious payment activity found. Click to confirm.",
+        "Family dinner at grandma’s on Sunday!",
+        "Click now to unlock your bank account.",
+        "Study group meets in Room 305 after lunch.",
+        "Your credentials have been compromised. Act now.",
+        "Good luck on your midterms today!",
+        
+        "Final notice: claim your settlement before midnight.",
+        "Any updates on the group project?",
+        "Failure to act will result in legal action.",
+        "Hope your interview went well!",
+        "Win a year of free subscription – limited time only!",
+        "Want to grab dinner after class?",
+        "Confirm now to stop account deactivation.",
+        "Thanks for joining the workshop!",
+        "Reactivate by clicking below – time sensitive.",
+        "I shared the calendar with the correct times now."
+    ],
+    "labels": [
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit",
+
+        "phishing", "legit", "phishing", "legit", "phishing",
+        "legit", "phishing", "legit", "phishing", "legit"
+    ]
+}
+
+
+
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+vector = TfidfVectorizer(ngram_range=(1, 2))
+vectors = vector.fit_transform(data["emails"])
+print("TF-IDF Matrix shape:", vectors.shape)
+print("Words used (features):", vector.get_feature_names_out())
+
+
+
+
+def extract_custom_features(email):
+    return {
+        "has_link": int("http" in email or ".com" in email),
+        "exclamations": email.count("!"),
+        "all_caps": sum(1 for word in email.split() if word.isupper())
+    }
+
+# Extract custom features
+custom_features = [extract_custom_features(email) for email in data["emails"]]
+custom_df = pd.DataFrame(custom_features)
+
+
+from scipy.sparse import hstack
+
+# Convert custom features to NumPy array
+custom_array = custom_df.to_numpy()
+
+# Combine sparse TF-IDF matrix with dense custom features
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+custom_scaled = scaler.fit_transform(custom_array)
+
+# Final features
+from scipy.sparse import csr_matrix
+final_vectors = hstack([vectors, csr_matrix(custom_scaled)])
+
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+# Split the data into training and testing parts
+X_train, X_test, Y_train, Y_test = train_test_split(final_vectors, data["labels"], test_size=0.1, random_state=42)
+
+# Create the robot brain (model)
+model = LogisticRegression()
+
+# Teach the robot using the training data
+model.fit(X_train, Y_train)
+
+
+
+from sklearn.metrics import accuracy_score, classification_report
+
+# Step 1: Use the model to predict on the test set
+y_pred = model.predict(X_test)
+
+# Step 2: Compare predictions with actual answers
+print("Accuracy:", accuracy_score(Y_test, y_pred))
+
+# Step 3: See detailed results
+print("\nClassification Report:\n", classification_report(Y_test, y_pred))
+
+new_email = input("Paste an email here: ")
+new_email_vector = vector.transform([new_email])
+
+# Extract custom features for the new email
+new_email_custom_features = extract_custom_features(new_email)
+new_email_custom_df = pd.DataFrame([new_email_custom_features]) # Convert to DataFrame
+new_email_custom_array = new_email_custom_df.to_numpy() # Convert to NumPy array
+new_email_custom_scaled = scaler.transform(new_email_custom_array) # Scale using the existing scaler
+
+# Combine TF-IDF vector and custom features for the new email
+new_email_final_vectors = hstack([new_email_vector, csr_matrix(new_email_custom_scaled)])
+
+# Now you can use 'new_email_final_vectors' for prediction
+prediction = model.predict(new_email_final_vectors)
+print("Prediction:", prediction)
