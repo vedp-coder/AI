@@ -108,7 +108,7 @@ print("Accuracy:", accuracy_score(Y_test, y_pred))
 # Step 3: See detailed results
 print("\nClassification Report:\n", classification_report(Y_test, y_pred))
 
-new_email = input("Paste an email here: ")
-new_email_vect = vector.transform([new_email])
-prediction = model.predict(new_email_vect)
-print("Prediction:", prediction)
+new_emails = input("Paste an email here: ")
+new_emails_vect = vect.transform([new_emails])
+predictions = model.predict(new_emails_vect)
+print("Prediction:", predictions)
