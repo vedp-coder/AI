@@ -81,10 +81,10 @@ ff = pd.DataFrame(data)
 print(ff)
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-vect = TfidVectorizer()
+vect = TfidfVectorizer()
 vects = vect.fit_transform(ff["emails"])
 print("TF-IDF Matrix shape:", vects.shape)
-print("Words used (features):", vects.features_name_out())
+print("Words used (features):", vect.get_feature_names_out()) # Change vects to vect
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
